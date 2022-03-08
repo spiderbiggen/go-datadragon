@@ -1,14 +1,16 @@
 package datadragon
 
-type Region int
+type Region uint8
 
 const (
-	// BR1 is the Brazilian server
-	BR1 Region = iota
-	// EUN1 is the EU Nordic & East server
-	EUN1
+	// NA1 is the North American server
+	NA1 Region = iota
 	// EUW1 is the EU West server
 	EUW1
+	// EUN1 is the EU Nordic & East server
+	EUN1
+	// BR1 is the Brazilian server
+	BR1
 	// JP1 is the Japanese server
 	JP1
 	// KR is the Korean server
@@ -17,8 +19,6 @@ const (
 	LA1
 	// LA2 is the Southern Latin American server
 	LA2
-	// NA1 is the North American server
-	NA1
 	// OC1 is the Oceania server
 	OC1
 	// TR1 is the Turkish server
