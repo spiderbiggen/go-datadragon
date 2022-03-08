@@ -8,17 +8,17 @@ func TestRegion_Realm(t *testing.T) {
 		r    Region
 		want string
 	}{
-		{name: "BR1 \"br\"", r: BR1, want: "br"},
-		{name: "EUN1 \"eune\"", r: EUN1, want: "eune"},
-		{name: "EUW1 \"euw\"", r: EUW1, want: "euw"},
-		{name: "JP1 \"jp\"", r: JP1, want: "jp"},
-		{name: "KR \"kr\"", r: KR, want: "kr"},
-		{name: "LA1 \"lan\"", r: LA1, want: "lan"},
-		{name: "LA2 \"las\"", r: LA2, want: "las"},
-		{name: "NA1 \"na\"", r: NA1, want: "na"},
-		{name: "OC1 \"oce\"", r: OC1, want: "oce"},
-		{name: "TR1 \"tr\"", r: TR1, want: "tr"},
-		{name: "RU \"ru\"", r: RU, want: "ru"},
+		{name: "BR1 is 'br'", r: BR1, want: "br"},
+		{name: "EUN1 is 'eune'", r: EUN1, want: "eune"},
+		{name: "EUW1 is 'euw'", r: EUW1, want: "euw"},
+		{name: "JP1 is 'jp'", r: JP1, want: "jp"},
+		{name: "KR is 'kr'", r: KR, want: "kr"},
+		{name: "LA1 is 'lan'", r: LA1, want: "lan"},
+		{name: "LA2 is 'las'", r: LA2, want: "las"},
+		{name: "NA1 is 'na'", r: NA1, want: "na"},
+		{name: "OC1 is 'oce'", r: OC1, want: "oce"},
+		{name: "TR1 is 'tr'", r: TR1, want: "tr"},
+		{name: "RU is 'ru'", r: RU, want: "ru"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
