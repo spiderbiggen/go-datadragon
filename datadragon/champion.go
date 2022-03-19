@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	ErrNoId             = errors.New("no id specified")
+	ErrNoID             = errors.New("no id specified")
 	ErrChampionNotFound = errors.New("champion not found")
 )
 
@@ -26,7 +26,7 @@ type championsFullResponse struct {
 
 type Champion struct {
 	Version string        `json:"Version"`
-	Id      string        `json:"id"`
+	ID      string        `json:"id"`
 	Key     uint16        `json:"key,string"`
 	Name    string        `json:"name"`
 	Title   string        `json:"title"`
@@ -66,7 +66,7 @@ type ChampionImage struct {
 }
 
 type ChampionSkin struct {
-	Id      uint32 `json:"id,string"`
+	ID      uint32 `json:"id,string"`
 	Num     uint8  `json:"num"`
 	Name    string `json:"name"`
 	Chromas bool   `json:"chromas"`
@@ -96,7 +96,7 @@ type ChampionStats struct {
 }
 
 type ChampionSpell struct {
-	Id          string `json:"id"`
+	ID          string `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Tooltip     string `json:"tooltip"`
@@ -155,7 +155,7 @@ func (d DataDragon) ChampionsFull(ctx context.Context, params ...RequestConfig) 
 
 func (d *DataDragon) Champion(ctx context.Context, id string, params ...RequestConfig) (*ChampionFull, error) {
 	if id == "" {
-		return nil, ErrNoId
+		return nil, ErrNoID
 	}
 
 	config, err := d.mergeConfig(params, RequireVersion())
