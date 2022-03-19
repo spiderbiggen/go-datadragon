@@ -1,5 +1,4 @@
 //go:build integration
-// +build integration
 
 package datadragon
 
@@ -8,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestDataDragon_LoadingImage(t *testing.T) {
+func TestDataDragon_ImageLoading(t *testing.T) {
 	type args struct {
 		ctx      context.Context
 		champion string
@@ -65,23 +64,23 @@ func TestDataDragon_LoadingImage(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			d := New(WithVersion(testVersion))
-			got, err := d.LoadingImage(tt.args.ctx, tt.args.champion, tt.args.skin)
+			got, err := d.ImageLoading(tt.args.ctx, tt.args.champion, tt.args.skin)
 			if err != nil {
 				if err != tt.wantErr {
-					t.Errorf("LoadingImage() error = %v, wantErr = %v", err, tt.wantErr)
+					t.Errorf("ImageLoading() error = %v, wantErr = %v", err, tt.wantErr)
 					return
 				}
 				return
 			}
 			if got == nil {
-				t.Errorf("LoadingImage() got = %v", got)
+				t.Errorf("ImageLoading() got = %v", got)
 				return
 			}
 		})
 	}
 }
 
-func TestDataDragon_PassiveImage(t *testing.T) {
+func TestDataDragon_ImagePassive(t *testing.T) {
 	type fields struct {
 		version *string
 	}
@@ -183,23 +182,23 @@ func TestDataDragon_PassiveImage(t *testing.T) {
 			if tt.fields.version != nil {
 				d.Version = *tt.fields.version
 			}
-			got, err := d.PassiveImage(tt.args.ctx, tt.args.passive, tt.args.requestConfig...)
+			got, err := d.ImagePassive(tt.args.ctx, tt.args.passive, tt.args.requestConfig...)
 			if err != nil {
 				if err != tt.wantErr {
-					t.Errorf("PassiveImage() error = %v, wantErr = %v", err, tt.wantErr)
+					t.Errorf("ImagePassive() error = %v, wantErr = %v", err, tt.wantErr)
 					return
 				}
 				return
 			}
 			if got == nil {
-				t.Errorf("PassiveImage() got = %v", got)
+				t.Errorf("ImagePassive() got = %v", got)
 				return
 			}
 		})
 	}
 }
 
-func TestDataDragon_SpellImage(t *testing.T) {
+func TestDataDragon_ImageSpell(t *testing.T) {
 	type fields struct {
 		version *string
 	}
@@ -285,7 +284,7 @@ func TestDataDragon_SpellImage(t *testing.T) {
 			args: args{
 				spell: ChampionImage{},
 			},
-			wantErr: ErrNoChampion,
+			wantErr: ErrNoSpell,
 		},
 		{
 			name: "Invalid no champion with invalid version",
@@ -296,7 +295,7 @@ func TestDataDragon_SpellImage(t *testing.T) {
 				spell:         ChampionImage{},
 				requestConfig: []RequestConfig{{Version: ""}},
 			},
-			wantErr: ErrNoChampion,
+			wantErr: ErrNoSpell,
 		},
 	}
 	for _, tt := range tests {
@@ -305,23 +304,23 @@ func TestDataDragon_SpellImage(t *testing.T) {
 			if tt.fields.version != nil {
 				d.Version = *tt.fields.version
 			}
-			got, err := d.SpellImage(tt.args.ctx, tt.args.spell, tt.args.requestConfig...)
+			got, err := d.ImageSpell(tt.args.ctx, tt.args.spell, tt.args.requestConfig...)
 			if err != nil {
 				if err != tt.wantErr {
-					t.Errorf("SpellImage() error = %v, wantErr = %v", err, tt.wantErr)
+					t.Errorf("ImageSpell() error = %v, wantErr = %v", err, tt.wantErr)
 					return
 				}
 				return
 			}
 			if got == nil {
-				t.Errorf("SpellImage() got = %v", got)
+				t.Errorf("ImageSpell() got = %v", got)
 				return
 			}
 		})
 	}
 }
 
-func TestDataDragon_SplashImage(t *testing.T) {
+func TestDataDragon_ImageSplash(t *testing.T) {
 	type fields struct {
 		version *string
 	}
@@ -385,23 +384,23 @@ func TestDataDragon_SplashImage(t *testing.T) {
 			if tt.fields.version != nil {
 				d.Version = *tt.fields.version
 			}
-			got, err := d.SplashImage(tt.args.ctx, tt.args.champion, tt.args.skin)
+			got, err := d.ImageSplash(tt.args.ctx, tt.args.champion, tt.args.skin)
 			if err != nil {
 				if err != tt.wantErr {
-					t.Errorf("SplashImage() error = %v, wantErr = %v", err, tt.wantErr)
+					t.Errorf("ImageSplash() error = %v, wantErr = %v", err, tt.wantErr)
 					return
 				}
 				return
 			}
 			if got == nil {
-				t.Errorf("SplashImage() got = %v", got)
+				t.Errorf("ImageSplash() got = %v", got)
 				return
 			}
 		})
 	}
 }
 
-func TestDataDragon_SquareChampionImage(t *testing.T) {
+func TestDataDragon_ImageChampionSquare(t *testing.T) {
 	type fields struct {
 		version *string
 	}
@@ -503,16 +502,108 @@ func TestDataDragon_SquareChampionImage(t *testing.T) {
 			if tt.fields.version != nil {
 				d.Version = *tt.fields.version
 			}
-			got, err := d.SquareChampionImage(tt.args.ctx, tt.args.champion, tt.args.requestConfig...)
+			got, err := d.ImageChampionSquare(tt.args.ctx, tt.args.champion, tt.args.requestConfig...)
 			if err != nil {
 				if err != tt.wantErr {
-					t.Errorf("SquareChampionImage() error = %v, wantErr = %v", err, tt.wantErr)
+					t.Errorf("ImageChampionSquare() error = %v, wantErr = %v", err, tt.wantErr)
 					return
 				}
 				return
 			}
 			if got == nil {
-				t.Errorf("SquareChampionImage() got = %v", got)
+				t.Errorf("ImageChampionSquare() got = %v", got)
+				return
+			}
+		})
+	}
+}
+
+func TestDataDragon_ImageItem(t *testing.T) {
+	type fields struct {
+		version *string
+	}
+	type args struct {
+		ctx           context.Context
+		item          uint16
+		requestConfig []RequestConfig
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		wantErr error
+	}{
+		{
+			name: "Success Boots of speed",
+			args: args{
+				ctx:  context.Background(),
+				item: 1001,
+			},
+		},
+		{
+			name: "Success faerie charm",
+			args: args{
+				ctx:  context.Background(),
+				item: 1004,
+			},
+		},
+		{
+			name: "Success Boots of speed other version",
+			args: args{
+				ctx:  context.Background(),
+				item: 1001,
+				requestConfig: []RequestConfig{
+					{Version: testVersion2},
+				},
+			},
+		},
+		{
+			name: "Success custom version",
+			fields: fields{
+				version: &emptyString,
+			},
+			args: args{
+				ctx:           context.Background(),
+				item:          1001,
+				requestConfig: []RequestConfig{{Version: testVersion2}},
+			},
+		},
+		{
+			name: "Invalid image",
+			args: args{
+				ctx:  context.Background(),
+				item: 0,
+			},
+			wantErr: ErrNotFound,
+		},
+		{
+			name: "Invalid version",
+			fields: fields{
+				version: &emptyString,
+			},
+			args: args{
+				ctx:  context.Background(),
+				item: 1001,
+			},
+			wantErr: ErrNoVersion,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			d := New(WithVersion(testVersion))
+			if tt.fields.version != nil {
+				d.Version = *tt.fields.version
+			}
+			got, err := d.ImageItem(tt.args.ctx, tt.args.item, tt.args.requestConfig...)
+			if err != nil {
+				if err != tt.wantErr {
+					t.Errorf("ImageItem() error = %v, wantErr = %v", err, tt.wantErr)
+					return
+				}
+				return
+			}
+			if got == nil {
+				t.Errorf("ImageItem() got = %v", got)
 				return
 			}
 		})
